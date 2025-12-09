@@ -6,7 +6,7 @@ const Footer = () => {
     <footer className="bg-[#0f0715] text-white py-8 border-t border-white/10">
       <div className="max-w-7xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center">
         <div className="mb-4 md:mb-0">
-          <span className="font-bold text-xl">Portfolio.</span>
+          <span className="font-bold text-xl">Suprakash Dhar</span>
         </div>
         
         <div className="flex space-x-6 mb-4 md:mb-0">
@@ -16,7 +16,7 @@ const Footer = () => {
         </div>
 
         <div className="text-gray-500 text-sm">
-          &copy; 2025 Alex Dev. All rights reserved.
+          &copy; 2025 Suprakash Dhar. All rights reserved.
         </div>
       </div>
     </footer>

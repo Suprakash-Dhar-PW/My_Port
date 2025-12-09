@@ -26,21 +26,21 @@ const Contact = () => {
               <div className="space-y-6">
                 <div className="flex items-center space-x-3 text-gray-300">
                   <Mail className="text-purple-400" size={20} />
-                  <span>alex@example.com</span>
+                  <span>dharsuprakash02@gmail.com</span>
                 </div>
                 <div className="flex items-center space-x-3 text-gray-300">
                   <Phone className="text-purple-400" size={20} />
-                  <span>+1 (555) 123-4567</span>
+                  <span>+91 8837088528</span>
                 </div>
                 <div className="flex items-center space-x-3 text-gray-300">
                   <MapPin className="text-purple-400" size={20} />
-                  <span>San Francisco, CA</span>
+                  <span>Bangalore, Karnataka</span>
                 </div>
               </div>
             </div>
             
             <div className="mt-12 md:mt-0">
-               <p className="text-gray-400 text-sm">© 2025 Alex Dev.</p>
+               <p className="text-gray-400 text-sm">© 2025 Suprakash Dhar.</p>
             </div>
           </div>
             

@@ -18,7 +18,7 @@ const HeroAbout = () => {
   }, []);
 
   return (
-    <section className="relative min-h-screen bg-[#0f0715] text-white flex items-center justify-center overflow-hidden py-20 px-4 md:px-8">
+    <section id='home' className="relative min-h-screen bg-[#0f0715] text-white flex items-center justify-center overflow-hidden py-20 px-4 md:px-8">
       
       {/* Background Gradients (Atmosphere) */}
       <div className="absolute top-0 left-0 w-96 h-96 bg-purple-600/20 rounded-full blur-[120px] -translate-x-1/2 -translate-y-1/2" />

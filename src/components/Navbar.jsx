@@ -6,8 +6,14 @@ import { motion, AnimatePresence } from 'framer-motion';
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
-  // Define links in an array for easy management
-  const navLinks = ['Home', 'Education', 'TechStack', 'Projects', 'Contact'];
+  // 1. Use objects to separate the 'Name' (display) from the 'id' (link target)
+  const navLinks = [
+    { name: 'Home',       id: 'home' },
+    { name: 'Education',  id: 'education' },
+    { name: 'Tech Stack', id: 'techstack' },
+    { name: 'Projects',   id: 'projects' },
+    { name: 'Contact',    id: 'contact' }
+  ];
 
   return (
     <motion.nav 
@@ -29,12 +35,11 @@ const Navbar = () => {
             <div className="ml-8 flex items-baseline space-x-6">
               {navLinks.map((item) => (
                 <a 
-                  key={item} 
-                  href={`#${item.toLowerCase()}`} 
+                  key={item.name} 
+                  href={`#${item.id}`} // Uses the ID for linking
                   className="text-gray-300 hover:text-purple-400 px-3 py-2 rounded-md text-sm font-medium transition-colors hover:bg-white/5 relative group"
                 >
-                  {item}
-                  {/* Optional: Subtle underline animation */}
+                  {item.name}
                   <span className="absolute bottom-1 left-0 w-0 h-0.5 bg-purple-500 transition-all duration-300 group-hover:w-full opacity-50"></span>
                 </a>
               ))}
@@ -78,12 +83,12 @@ const Navbar = () => {
             <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
               {navLinks.map((item) => (
                 <a 
-                  key={item} 
-                  href={`#${item.toLowerCase()}`} 
+                  key={item.name} 
+                  href={`#${item.id}`} 
                   onClick={() => setIsOpen(false)}
                   className="block text-gray-300 hover:text-white hover:bg-white/10 px-3 py-3 rounded-md text-base font-medium transition-colors"
                 >
-                  {item}
+                  {item.name}
                 </a>
               ))}
               

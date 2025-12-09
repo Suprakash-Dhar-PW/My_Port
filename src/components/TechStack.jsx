@@ -34,7 +34,7 @@ const TechStack = () => {
   const itemClass = "relative w-12 h-12 bg-[#0f0715] border border-purple-500/30 rounded-full flex items-center justify-center text-2xl shadow-lg shadow-purple-900/20 hover:border-purple-400 hover:shadow-[0_0_20px_rgba(168,85,247,0.4)] transition-all cursor-pointer pointer-events-auto";
 
   return (
-    <section className="py-24 bg-[#0f0715] overflow-hidden flex flex-col items-center justify-center min-h-[600px] relative">
+    <section id='techstack' className="py-24 bg-[#0f0715] overflow-hidden flex flex-col items-center justify-center min-h-[600px] relative">
       
       <style>{`
         @keyframes orbit {
