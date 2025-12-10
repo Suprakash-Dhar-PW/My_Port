@@ -69,9 +69,14 @@ const HeroAbout = () => {
 
           {/* Buttons */}
           <div className="flex flex-wrap gap-4 pt-4">
-            <button className="flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-purple-600 to-blue-600 rounded-full font-semibold hover:scale-105 transition-transform shadow-lg shadow-purple-500/25">
+            {/* CHANGED: Used <a> tag to link to #contact */}
+            <a 
+              href="#contact" 
+              className="flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-purple-600 to-blue-600 rounded-full font-semibold hover:scale-105 transition-transform shadow-lg shadow-purple-500/25 text-white cursor-pointer"
+            >
               Contact Me <IoIosSend />
-            </button>
+            </a>
+            
             <button className="flex items-center gap-2 px-6 py-3 border border-white/20 rounded-full font-semibold hover:bg-white/10 transition-colors">
               Download CV <FaDownload size={14} />
             </button>
@@ -102,7 +107,6 @@ const HeroAbout = () => {
             className="relative w-72 h-72 md:w-96 md:h-96"
           >
             {/* The Image Itself */}
-            {/* REPLACE 'src' WITH YOUR ACTUAL IMAGE PATH */}
             <div className="w-full h-full rounded-[2rem] overflow-hidden border-2 border-white/10 shadow-2xl relative z-10 bg-[#1a1025]">
                <img 
                  src="Supra_image.jpg" 
