@@ -4,7 +4,7 @@ import { FaGithub, FaLinkedin, FaTwitter, FaDownload } from 'react-icons/fa';
 import { IoIosSend } from 'react-icons/io';
 
 // --- CONFIGURATION ---
-const roles = ["Full Stack Dev", "Freelancer", "AI Enthusiast", "Problem Solver", "Tech Enthusiast"];
+const roles = ["Full Stack Dev Aspirant", "Freelancer", "AI Enthusiast", "Problem Solver", "Tech Enthusiast"];
 
 const HeroAbout = () => {
   const [roleIndex, setRoleIndex] = useState(0);

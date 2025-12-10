@@ -1,59 +1,190 @@
-import React from 'react';
-import { Mail, Phone, MapPin } from 'lucide-react';
+import React, { useState, useRef } from 'react';
 import { motion } from 'framer-motion';
+import { Mail, MapPin, Phone, Send, Loader2 } from 'lucide-react';
+import emailjs from '@emailjs/browser';
+import toast, { Toaster } from 'react-hot-toast'; // Optional: for nice alerts (npm install react-hot-toast)
 
 const Contact = () => {
+  const formRef = useRef();
+  const [loading, setLoading] = useState(false);
+
+  const sendEmail = (e) => {
+    e.preventDefault();
+    setLoading(true);
+
+    emailjs.sendForm(
+      'service_g7xf1an',    
+      'template_q4a9lcz',   
+      formRef.current,
+      'wK9oUw_NEGTGCyhSM'     
+    )
+    .then(() => {
+        setLoading(false);
+        
+        toast.success("Message sent successfully!", {
+          style: {
+            background: '#1a1025',
+            color: '#fff',
+            border: '1px solid rgba(147, 51, 234, 0.3)',
+          },
+          iconTheme: {
+            primary: '#a855f7',
+            secondary: '#fff',
+          },
+        });
+        
+        e.target.reset(); 
+    }, (error) => {
+        setLoading(false);
+        console.error("EmailJS Error:", error.text); // <--- Good practice to log the specific error
+        
+        toast.error("Something went wrong. Try again.", {
+          style: {
+            background: '#1a1025',
+            color: '#fff',
+            border: '1px solid rgba(239, 68, 68, 0.3)',
+          },
+        });
+    });
+  };
+
   return (
-    <section id="contact" className="py-20 bg-[#0f0715] relative">
-      {/* Decorative Blur Effect */}
-      <div className="absolute bottom-0 right-0 w-[300px] h-[300px] bg-pink-600/20 rounded-full blur-[100px] -z-10"></div>
+    <section id="contact" className="py-20 bg-[#0f0715] relative overflow-hidden">
       
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* ADD THIS TOASTER COMPONENT HERE */}
+      <Toaster
+        position="bottom-center"
+        reverseOrder={false}
+        toastOptions={{
+          className: '',
+          style: {
+            background: '#0f0715',
+            color: '#fff',
+            border: '1px solid #333',
+            padding: '16px',
+          },
+        }}
+      />
+
+      {/* Background Shapes */}
+      <div className="absolute top-10 left-10 w-72 h-72 bg-purple-600/10 rounded-full blur-[100px]"></div>
+      
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        
+        {/* Header */}
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="text-center mb-12"
+          transition={{ duration: 0.6 }}
+          className="text-center mb-16"
         >
-          <h2 className="text-3xl font-bold mb-4 text-white">Get In Touch</h2>
-          <p className="text-gray-400">Have a project in mind? Let's build something together.</p>
+          <h2 className="text-3xl md:text-5xl font-bold text-white mb-4">
+            Get in <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600">Touch</span>
+          </h2>
+          <p className="text-gray-400 max-w-2xl mx-auto">
+            Have a project in mind or just want to say hi? I'm always open to discussing new projects, creative ideas or opportunities to be part of your visions.
+          </p>
         </motion.div>
 
-        <div className="max-w-3xl mx-auto bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl overflow-hidden flex flex-col md:flex-row">
-          <div className="p-8 bg-purple-900/20 md:w-1/2 flex flex-col justify-between">
-            <div>
-              <h3 className="text-2xl font-bold mb-6 text-white">Contact Info</h3>
-              <div className="space-y-6">
-                <div className="flex items-center space-x-3 text-gray-300">
-                  <Mail className="text-purple-400" size={20} />
-                  <span>dharsuprakash02@gmail.com</span>
-                </div>
-                <div className="flex items-center space-x-3 text-gray-300">
-                  <Phone className="text-purple-400" size={20} />
-                  <span>+91 8837088528</span>
-                </div>
-                <div className="flex items-center space-x-3 text-gray-300">
-                  <MapPin className="text-purple-400" size={20} />
-                  <span>Bangalore, Karnataka</span>
-                </div>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+          
+          {/* Contact Info (Left Side) */}
+          <motion.div 
+            initial={{ opacity: 0, x: -50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6 }}
+            className="space-y-8"
+          >
+            <div className="flex items-start gap-4">
+              <div className="p-3 bg-purple-500/10 rounded-lg text-purple-400">
+                <Mail size={24} />
+              </div>
+              <div>
+                <h3 className="text-white font-semibold text-lg">Email Me</h3>
+                <p className="text-gray-400">your.email@example.com</p>
               </div>
             </div>
-            
-            <div className="mt-12 md:mt-0">
-               <p className="text-gray-400 text-sm">© 2025 Suprakash Dhar.</p>
+
+            <div className="flex items-start gap-4">
+              <div className="p-3 bg-pink-500/10 rounded-lg text-pink-400">
+                <MapPin size={24} />
+              </div>
+              <div>
+                <h3 className="text-white font-semibold text-lg">Location</h3>
+                <p className="text-gray-400">Remote / Worldwide</p>
+              </div>
             </div>
-          </div>
-            
-          <form className="p-8 md:w-1/2">
-            <div className="space-y-4">
-              <input type="text" placeholder="Name" className="w-full px-4 py-3 bg-[#0f0715] border border-gray-700 rounded-lg focus:outline-none focus:border-purple-500 text-white placeholder-gray-500 transition-colors" />
-              <input type="email" placeholder="Email" className="w-full px-4 py-3 bg-[#0f0715] border border-gray-700 rounded-lg focus:outline-none focus:border-purple-500 text-white placeholder-gray-500 transition-colors" />
-              <textarea rows="4" placeholder="Message" className="w-full px-4 py-3 bg-[#0f0715] border border-gray-700 rounded-lg focus:outline-none focus:border-purple-500 text-white placeholder-gray-500 transition-colors"></textarea>
-              <button className="w-full bg-gradient-to-r from-purple-600 to-pink-600 text-white font-bold py-3 px-4 rounded-lg hover:shadow-lg hover:shadow-purple-500/40 transition-all transform hover:-translate-y-0.5">
-                Send Message
+
+            <div className="flex items-start gap-4">
+              <div className="p-3 bg-blue-500/10 rounded-lg text-blue-400">
+                <Phone size={24} />
+              </div>
+              <div>
+                <h3 className="text-white font-semibold text-lg">Phone</h3>
+                <p className="text-gray-400">+1 (123) 456-7890</p>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Contact Form (Right Side) */}
+          <motion.div 
+            initial={{ opacity: 0, x: 50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6 }}
+            className="bg-white/5 p-8 rounded-2xl border border-white/10 backdrop-blur-sm"
+          >
+            <form ref={formRef} onSubmit={sendEmail} className="space-y-6">
+              
+              {/* Name Input */}
+              <div>
+                <label className="block text-sm font-medium text-gray-400 mb-2">Name</label>
+                <input 
+                  type="text" 
+                  name="from_name" // MUST match EmailJS template variable
+                  required
+                  className="w-full bg-[#0a0510] border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-purple-500 transition-colors"
+                  placeholder="Your Name"
+                />
+              </div>
+
+              {/* Email Input */}
+              <div>
+                <label className="block text-sm font-medium text-gray-400 mb-2">Email</label>
+                <input 
+                  type="email" 
+                  name="from_email" // MUST match EmailJS template variable
+                  required
+                  className="w-full bg-[#0a0510] border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-purple-500 transition-colors"
+                  placeholder="your@email.com"
+                />
+              </div>
+
+              {/* Message Input */}
+              <div>
+                <label className="block text-sm font-medium text-gray-400 mb-2">Message</label>
+                <textarea 
+                  name="message" // MUST match EmailJS template variable
+                  rows="4"
+                  required
+                  className="w-full bg-[#0a0510] border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-purple-500 transition-colors resize-none"
+                  placeholder="Your message..."
+                ></textarea>
+              </div>
+
+              {/* Submit Button */}
+              <button 
+                type="submit" 
+                disabled={loading}
+                className="w-full py-3 px-6 bg-gradient-to-r from-purple-600 to-pink-600 rounded-lg text-white font-semibold shadow-lg shadow-purple-500/20 hover:shadow-purple-500/40 transition-all flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                {loading ? (
+                  <>Sending... <Loader2 className="animate-spin" size={20} /></>
+                ) : (
+                  <>Send Message <Send size={20} /></>
+                )}
               </button>
-            </div>
-          </form>
+            </form>
+          </motion.div>
         </div>
       </div>
     </section>
