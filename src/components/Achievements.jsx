@@ -94,7 +94,7 @@ const Achievements = () => {
   const scroll = (direction) => {
     const container = scrollContainerRef.current;
     if (container) {
-      // Scroll by 300px on mobile, 400px on desktop
+      // Scroll by 320px
       const scrollAmount = direction === 'left' ? -320 : 320;
       container.scrollBy({ left: scrollAmount, behavior: 'smooth' });
     }
@@ -114,7 +114,8 @@ const Achievements = () => {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-12"
+          // Added extra bottom margin (mb-20) on mobile to make room for buttons
+          className="text-center mb-20 md:mb-12"
         >
           <div className="flex justify-center items-center gap-2 mb-2">
             <Award className="text-purple-500" size={24} />
@@ -126,21 +127,25 @@ const Achievements = () => {
         </motion.div>
 
         {/* --- CAROUSEL CONTAINER --- */}
-        <div className="relative group px-2 md:px-12">
+        <div className="relative group w-full">
           
-          {/* Left Button (Visible ALWAYS now) */}
+          {/* Left Button */}
+          {/* Mobile: Top Right (-top-16) | Desktop: Center Left (top-1/2) */}
           <button 
             onClick={() => scroll('left')}
-            className="absolute left-0 top-1/2 -translate-y-1/2 z-20 p-2 md:p-3 bg-black/60 hover:bg-purple-600 text-white rounded-full backdrop-blur-md border border-white/10 transition-all hover:scale-110 shadow-lg"
+            className="absolute z-20 p-2 md:p-3 bg-black/60 hover:bg-purple-600 text-white rounded-full backdrop-blur-md border border-white/10 transition-all hover:scale-110 shadow-lg
+                       top-[-60px] right-14 md:top-1/2 md:right-auto md:left-0 md:-translate-y-1/2"
             aria-label="Scroll Left"
           >
             <ChevronLeft size={24} />
           </button>
 
-          {/* Right Button (Visible ALWAYS now) */}
+          {/* Right Button */}
+          {/* Mobile: Top Right (-top-16) | Desktop: Center Right (top-1/2) */}
           <button 
             onClick={() => scroll('right')}
-            className="absolute right-0 top-1/2 -translate-y-1/2 z-20 p-2 md:p-3 bg-black/60 hover:bg-purple-600 text-white rounded-full backdrop-blur-md border border-white/10 transition-all hover:scale-110 shadow-lg"
+            className="absolute z-20 p-2 md:p-3 bg-black/60 hover:bg-purple-600 text-white rounded-full backdrop-blur-md border border-white/10 transition-all hover:scale-110 shadow-lg
+                       top-[-60px] right-2 md:top-1/2 md:right-0 md:-translate-y-1/2"
              aria-label="Scroll Right"
           >
             <ChevronRight size={24} />
@@ -149,8 +154,12 @@ const Achievements = () => {
           {/* Scrollable Area */}
           <div 
             ref={scrollContainerRef}
-            className="flex gap-4 md:gap-6 overflow-x-auto pb-12 px-2 snap-x snap-mandatory hide-scrollbar touch-pan-x"
-            style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }} 
+            className="flex gap-4 md:gap-6 overflow-x-auto pb-12 px-[7.5vw] md:px-0 snap-x snap-mandatory hide-scrollbar touch-pan-y w-full"
+            style={{ 
+              paddingLeft: 'calc(50% - 42.5vw)', 
+              paddingRight: 'calc(50% - 42.5vw)',
+              scrollPaddingLeft: 'calc(50% - 42.5vw)' 
+            }} 
           >
             {achievements.map((item, index) => (
               <motion.div
@@ -159,8 +168,7 @@ const Achievements = () => {
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 viewport={{ once: true }}
-                // RESPONSIVE WIDTHS:
-                className="shrink-0 w-[85vw] sm:w-[350px] md:w-[380px] bg-[#1a1025] rounded-2xl overflow-hidden border border-white/10 shadow-lg flex flex-col group/card snap-center hover:border-purple-500/50 transition-colors duration-300"
+                className="shrink-0 w-[85vw] sm:w-[350px] md:w-[380px] snap-center bg-[#1a1025] rounded-2xl overflow-hidden border border-white/10 shadow-lg flex flex-col group/card hover:border-purple-500/50 transition-colors duration-300"
               >
                 {/* Image */}
                 <div className="h-48 sm:h-56 overflow-hidden relative border-b border-white/5">
