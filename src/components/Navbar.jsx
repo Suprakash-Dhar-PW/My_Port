@@ -6,12 +6,13 @@ import { motion, AnimatePresence } from 'framer-motion';
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
-  // 1. Use objects to separate the 'Name' (display) from the 'id' (link target)
+  // Updated navLinks to include Achievements
   const navLinks = [
     { name: 'Home',       id: 'home' },
     { name: 'Tech Stack', id: 'techstack' },
     { name: 'Education',  id: 'education' },
     { name: 'Projects',   id: 'projects' },
+    { name: 'Achievements', id: 'achievements' }, // <--- Added this
     { name: 'Contact',    id: 'contact' }
   ];
 
@@ -94,7 +95,7 @@ const Navbar = () => {
               
               {/* Mobile Social Links Row */}
               <div className="flex gap-6 px-3 py-4 border-t border-white/10 mt-2">
-                <a href="https://github.com" target="_blank" rel="noopener noreferrer"><FaGithub size={22} className="text-gray-400" /></a>
+                <a href="https://github.com/Suprakash-Dhar-PW" target="_blank" rel="noopener noreferrer"><FaGithub size={22} className="text-gray-400" /></a>
                 <a href="https://www.linkedin.com/in/suprakash-dhar-504032334/" target="_blank" rel="noopener noreferrer"><FaLinkedin size={22} className="text-gray-400" /></a>
                 <a href="https://www.instagram.com/encoure05/" target="_blank" rel="noopener noreferrer"><FaInstagram size={22} className="text-gray-400" /></a>
               </div>

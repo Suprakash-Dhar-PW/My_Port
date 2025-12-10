@@ -81,13 +81,6 @@ const HeroAbout = () => {
               Download CV <FaDownload size={14} />
             </button>
           </div>
-
-          {/* Social Links */}
-          <div className="flex items-center gap-6 pt-4 text-gray-400">
-            <a href="#" className="hover:text-white transition-colors hover:scale-110 transform"><FaGithub size={24} /></a>
-            <a href="#" className="hover:text-blue-400 transition-colors hover:scale-110 transform"><FaLinkedin size={24} /></a>
-            <a href="#" className="hover:text-blue-300 transition-colors hover:scale-110 transform"><FaTwitter size={24} /></a>
-          </div>
         </motion.div>
 
         {/* --- RIGHT SIDE: IMAGE & VISUALS --- */}
