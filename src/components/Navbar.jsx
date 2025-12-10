@@ -6,28 +6,45 @@ import { motion, AnimatePresence } from 'framer-motion';
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
-  // Updated navLinks to include Achievements
   const navLinks = [
     { name: 'Home',       id: 'home' },
     { name: 'Tech Stack', id: 'techstack' },
     { name: 'Education',  id: 'education' },
     { name: 'Projects',   id: 'projects' },
-    { name: 'Achievements', id: 'achievements' }, // <--- Added this
+    { name: 'Achievements', id: 'achievements' },
     { name: 'Contact',    id: 'contact' }
   ];
+
+  // --- NEW FUNCTION: Handes Scroll Manually ---
+  const handleMobileScroll = (e, targetId) => {
+    e.preventDefault(); // Stop the default anchor jump
+    setIsOpen(false);   // Close the menu
+    
+    // Find the section and scroll to it smoothly
+    const element = document.getElementById(targetId);
+    if (element) {
+      // Small timeout ensures menu closes before scroll starts (better UX)
+      setTimeout(() => {
+        element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 100);
+    }
+  };
 
   return (
     <motion.nav 
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.5 }}
-      className="fixed w-full bg-[#0f0715]/80 backdrop-blur-md z-50 border-b border-white/10"
+      className="fixed w-full bg-[#0f0715]/90 backdrop-blur-md z-50 border-b border-white/10"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           
           {/* --- Logo --- */}
-          <div className="flex-shrink-0 font-bold text-2xl text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600 cursor-pointer">
+          <div 
+            onClick={(e) => handleMobileScroll(e, 'home')}
+            className="flex-shrink-0 font-bold text-2xl text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600 cursor-pointer"
+          >
             Suprakash Dhar
           </div>
           
@@ -37,7 +54,7 @@ const Navbar = () => {
               {navLinks.map((item) => (
                 <a 
                   key={item.name} 
-                  href={`#${item.id}`} // Uses the ID for linking
+                  href={`#${item.id}`} 
                   className="text-gray-300 hover:text-purple-400 px-3 py-2 rounded-md text-sm font-medium transition-colors hover:bg-white/5 relative group"
                 >
                   {item.name}
@@ -64,7 +81,7 @@ const Navbar = () => {
           <div className="-mr-2 flex md:hidden">
             <button 
               onClick={() => setIsOpen(!isOpen)} 
-              className="text-gray-300 hover:text-white p-2 transition-colors"
+              className="text-gray-300 hover:text-white p-2 transition-colors focus:outline-none"
             >
               {isOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
@@ -86,8 +103,9 @@ const Navbar = () => {
                 <a 
                   key={item.name} 
                   href={`#${item.id}`} 
-                  onClick={() => setIsOpen(false)}
-                  className="block text-gray-300 hover:text-white hover:bg-white/10 px-3 py-3 rounded-md text-base font-medium transition-colors"
+                  // FIX: Use the manual scroll function here
+                  onClick={(e) => handleMobileScroll(e, item.id)}
+                  className="block text-gray-300 hover:text-white hover:bg-white/10 px-3 py-3 rounded-md text-base font-medium transition-colors cursor-pointer"
                 >
                   {item.name}
                 </a>
