@@ -1,159 +1,130 @@
-import React, { useState } from 'react';
-import { 
-  FaHtml5, FaCss3Alt, FaJs, FaReact, FaJava, FaPython, 
-  FaGitAlt, FaDatabase, FaBrain, FaTerminal, FaLeaf 
-} from 'react-icons/fa';
-import { SiTailwindcss, SiMysql, SiCplusplus, SiC } from 'react-icons/si';
-
-const innerCircle = [
-  { name: "C Language", icon: <SiC className="text-blue-500" /> },
-  { name: "C++", icon: <SiCplusplus className="text-blue-600" /> },
-  { name: "Java", icon: <FaJava className="text-red-600" /> },
-  { name: "Python", icon: <FaPython className="text-yellow-400" /> },
-  { name: "JavaScript", icon: <FaJs className="text-yellow-300" /> },
-  { name: "Terminal", icon: <FaTerminal className="text-gray-300" /> },
-];
-
-const outerCircle = [
-  { name: "HTML5", icon: <FaHtml5 className="text-orange-500" /> },
-  { name: "CSS3", icon: <FaCss3Alt className="text-blue-500" /> },
-  { name: "React", icon: <FaReact className="text-cyan-400" /> },
-  { name: "Tailwind", icon: <SiTailwindcss className="text-cyan-500" /> },
-  { name: "MySQL", icon: <SiMysql className="text-blue-400" /> },
-  { name: "MongoDB", icon: <FaLeaf className="text-green-500" /> },
-  { name: "Database", icon: <FaDatabase className="text-yellow-600" /> },
-  { name: "AI/ML", icon: <FaBrain className="text-purple-400" /> },
-  { name: "Git", icon: <FaGitAlt className="text-red-500" /> },
-];
+import React from "react";
+import { motion } from "framer-motion";
+import {
+  FaHtml5,
+  FaCss3Alt,
+  FaJs,
+  FaReact,
+  FaJava,
+  FaPython,
+  FaGitAlt,
+  FaGithub,
+  FaDatabase,
+  FaTerminal,
+  FaRocket,
+  FaWind,
+  FaLeaf,
+} from "react-icons/fa";
+import { SiTailwindcss, SiMysql, SiCplusplus, SiC } from "react-icons/si";
 
 const TechStack = () => {
-  const [isInnerHovered, setIsInnerHovered] = useState(false);
-  const [isOuterHovered, setIsOuterHovered] = useState(false);
-
-  // Shared CSS for the icons
-  const itemClass = "relative w-12 h-12 bg-[#0f0715] border border-purple-500/30 rounded-full flex items-center justify-center text-2xl shadow-lg shadow-purple-900/20 hover:border-purple-400 hover:shadow-[0_0_20px_rgba(168,85,247,0.4)] transition-all cursor-pointer pointer-events-auto";
+  const categories = [
+    {
+      title: "Languages",
+      skills: [
+        { name: "C", icon: <SiC className="text-blue-500" /> },
+        { name: "C++", icon: <SiCplusplus className="text-blue-600" /> },
+        { name: "Java", icon: <FaJava className="text-red-600" /> },
+        { name: "Python", icon: <FaPython className="text-yellow-400" /> },
+        { name: "JavaScript", icon: <FaJs className="text-yellow-300" /> },
+      ],
+    },
+    {
+      title: "Frontend",
+      skills: [
+        { name: "React", icon: <FaReact className="text-cyan-400" /> },
+        { name: "HTML5", icon: <FaHtml5 className="text-orange-500" /> },
+        { name: "CSS3", icon: <FaCss3Alt className="text-blue-500" /> },
+        { name: "Tailwind", icon: <SiTailwindcss className="text-cyan-500" /> },
+      ],
+    },
+    {
+      title: "Backend & Database",
+      skills: [
+        { name: "MySQL", icon: <SiMysql className="text-blue-400" /> },
+        { name: "DBMS", icon: <FaDatabase className="text-yellow-600" /> },
+        { name: "Terminal", icon: <FaTerminal className="text-gray-300" /> },
+      ],
+    },
+    {
+      title: "Tools & Innovation",
+      skills: [
+        { name: "Git", icon: <FaGitAlt className="text-red-500" /> },
+        { name: "GitHub", icon: <FaGithub className="text-white" /> },
+        { name: "Antigravity", icon: <FaRocket className="text-orange-500" /> },
+        { name: "Airia.ai", icon: <FaWind className="text-cyan-400" /> },
+      ],
+    },
+  ];
 
   return (
-    <section id='techstack' className="py-24 bg-[#0f0715] overflow-hidden flex flex-col items-center justify-center min-h-[600px] relative">
-      
-      <style>{`
-        @keyframes orbit {
-          from { transform: rotate(0deg); }
-          to { transform: rotate(360deg); }
-        }
-        @keyframes counter-orbit {
-          from { transform: rotate(360deg); }
-          to { transform: rotate(0deg); }
-        }
-        .paused {
-          animation-play-state: paused !important;
-        }
-      `}</style>
-
-      <div className="absolute top-10 z-10">
-        <h2 className="text-3xl font-bold text-white text-center">Tech Universe</h2>
-        <p className="text-gray-400 text-sm mt-2 text-center">Hover over a planet to explore</p>
+    <section
+      id="techstack"
+      className="py-24 bg-[#0f0715] relative overflow-hidden"
+    >
+      {/* Background Gradients */}
+      <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
+        <div className="absolute top-10 right-10 w-96 h-96 bg-purple-900/10 rounded-full blur-[100px]"></div>
+        <div className="absolute bottom-10 left-10 w-96 h-96 bg-blue-900/10 rounded-full blur-[100px]"></div>
       </div>
 
-      <div className="relative flex items-center justify-center w-[300px] h-[300px] md:w-[500px] md:h-[500px]">
-
-        {/* --- THE CORE --- */}
-        <div className="absolute z-20 w-24 h-24 bg-purple-600/20 backdrop-blur-md rounded-full flex items-center justify-center border border-purple-500 shadow-[0_0_30px_rgba(168,85,247,0.6)]">
-          <span className="text-white font-bold text-lg">CORE</span>
-        </div>
-
-        {/* --- INNER RING --- */}
-        <div 
-          // 1. ADDED pointer-events-none: Allows mouse to pass through the empty parts of this container
-          className={`absolute w-[200px] h-[200px] rounded-full border border-white/5 pointer-events-none ${isInnerHovered ? 'paused' : ''}`}
-          style={{ animation: 'orbit 20s linear infinite' }}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        {/* Section Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+          className="text-center mb-16"
         >
-          {innerCircle.map((skill, index) => {
-            const angle = (index / innerCircle.length) * 360;
-            const radius = 100;
-            
-            return (
-              <div
-                key={index}
-                className="absolute left-1/2 top-1/2 group"
-                style={{
-                  transform: `rotate(${angle}deg) translate(${radius}px) rotate(-${angle}deg)` 
-                }}
-              >
-                {/* 2. ADDED Events Here: We detect hover on the icon specifically */}
-                <div
-                  className={`${itemClass} ${isInnerHovered ? 'paused' : ''}`}
-                  onMouseEnter={() => setIsInnerHovered(true)}
-                  onMouseLeave={() => setIsInnerHovered(false)}
-                  style={{ 
-                    marginLeft: '-24px', 
-                    marginTop: '-24px',
-                    animation: 'counter-orbit 20s linear infinite' 
-                  }}
-                >
-                  {skill.icon}
+          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
+            Tech{" "}
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600">
+              Arsenal
+            </span>
+          </h2>
+          <p className="text-gray-400 text-lg max-w-2xl mx-auto">
+            The powerful tools and technologies that fuel my development.
+          </p>
+        </motion.div>
 
-                  {/* Tooltip */}
-                  <div className="absolute -top-12 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none whitespace-nowrap z-50">
-                     <div className="bg-purple-900/40 backdrop-blur-md border border-purple-500/30 text-purple-100 text-xs font-semibold px-3 py-1.5 rounded-full shadow-xl">
-                        {skill.name}
-                     </div>
+        {/* Bento Grid Layout */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {categories.map((category, idx) => (
+            <motion.div
+              key={idx}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: idx * 0.1 }}
+              viewport={{ once: true }}
+              className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-6 hover:border-purple-500/30 transition-all duration-300 hover:shadow-[0_0_30px_rgba(168,85,247,0.15)] group"
+            >
+              <h3 className="text-xl font-semibold text-white mb-6 border-b border-white/10 pb-2 flex items-center gap-2">
+                <span className="w-2 h-2 rounded-full bg-gradient-to-r from-purple-500 to-pink-500"></span>
+                {category.title}
+              </h3>
+
+              <div className="grid grid-cols-2 gap-4">
+                {category.skills.map((skill, sIdx) => (
+                  <div
+                    key={sIdx}
+                    className="flex flex-col items-center justify-center p-3 rounded-lg bg-white/5 hover:bg-white/10 transition-colors border border-transparent hover:border-white/5 group/skill"
+                  >
+                    <div className="text-3xl mb-2 transform group-hover/skill:scale-110 transition-transform duration-300 pointer-events-none">
+                      {skill.icon}
+                    </div>
+                    <span className="text-xs text-gray-400 font-medium group-hover/skill:text-white transition-colors">
+                      {skill.name}
+                    </span>
                   </div>
-                </div>
+                ))}
               </div>
-            );
-          })}
+            </motion.div>
+          ))}
         </div>
-
-        {/* --- OUTER RING --- */}
-        <div 
-          // 1. ADDED pointer-events-none: Prevents this large box from blocking the inner ring
-          className={`absolute w-[340px] h-[340px] md:w-[450px] md:h-[450px] rounded-full border border-white/5 pointer-events-none ${isOuterHovered ? 'paused' : ''}`}
-          style={{ animation: 'counter-orbit 35s linear infinite' }}
-        >
-          {outerCircle.map((skill, index) => {
-            const angle = (index / outerCircle.length) * 360;
-            
-            return (
-              <div
-                key={index}
-                className="absolute left-1/2 top-1/2 group"
-                style={{
-                    transform: `rotate(${angle}deg) translate(170px) rotate(-${angle}deg)`
-                }}
-              >
-                {/* 2. ADDED Events Here */}
-                <div
-                   className={`${itemClass} ${isOuterHovered ? 'paused' : ''}`}
-                   onMouseEnter={() => setIsOuterHovered(true)}
-                   onMouseLeave={() => setIsOuterHovered(false)}
-                   style={{ 
-                     marginLeft: '-24px', 
-                     marginTop: '-24px',
-                     animation: 'orbit 35s linear infinite' 
-                   }}
-                >
-                  {skill.icon}
-
-                   {/* Tooltip */}
-                   <div className="absolute -top-12 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none whitespace-nowrap z-50">
-                     <div className="bg-purple-900/40 backdrop-blur-md border border-purple-500/30 text-purple-100 text-xs font-semibold px-3 py-1.5 rounded-full shadow-xl">
-                        {skill.name}
-                     </div>
-                  </div>
-                </div>
-              </div>
-            );
-          })}
-        </div>
-        
-        {/* Decorative Lines */}
-        <div className="absolute w-[200px] h-[200px] rounded-full border border-dashed border-white/10 pointer-events-none"></div>
-        <div className="absolute w-[340px] h-[340px] md:w-[450px] md:h-[450px] rounded-full border border-dashed border-white/10 pointer-events-none"></div>
-
       </div>
     </section>
   );
 };
 
-export default TechStack; 
+export default TechStack;
